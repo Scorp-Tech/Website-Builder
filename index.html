@@ -19,8 +19,49 @@
     <div id="tempBox"></div>
   </div>
   <div id="propertyWindow">
-    <button id="deleteBtn">Delete</button>
+    <div id="propertyWindowHeader">
+      <h3>Properties</h3>
+    </div>
+    <div id="propertyWindowBody">
+      <div id="propertyWindowBodyContent">
+        <div class="hwxy-cont">
+          <div class="prop-a">
+            <span>H:</span>
+            <input type="number" id="heightInput" title="height" value="100">
+          </div>
+          <div class="prop-a">
+            <span>W:</span>
+            <input type="number" id="widthInput" title="width" value="100">
+          </div>
+          <div class="prop-a">
+            <span>X:</span>
+            <input type="number" id="xInput" title="left" value="0">
+          </div>
+          <div class="prop-a">
+            <span>Y:</span>
+            <input type="number" id="yInput" title="top" value="0">
+          </div>
+          <div>
+            <div>Border</div>
+            <div class="prop-a">
+              <input type="color" style="background-color: red; border: none;" id="borderColorInput" title="borderColor" value="0">
+            </div>
+          </div>
+          <div>
+            <div>Background</div>
+            <div class="prop-a">
+              <input type="color" style="background-color: red; border: none;" id="backgroundColorInput" title="backgroundColor" value="0">
+            </div>
+        </div>
+      </div>
+      <button class="r" id="deleteBtn">Delete</button>
+    </div>
+    <div id="hidePropertyBtn">
+      <i class="bi bi-caret-right-fill"></i>
+    </div>
   </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

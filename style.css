@@ -1,11 +1,15 @@
 body{
   margin: 0;
+  overflow-x: hidden;
 }
 *{
   -webkit-user-select: none;
   user-select: none;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  cursor: url(./assets/cursors/default.svg) 0 0, default;
 }
+
+
 
 textarea{
   resize: none;
@@ -23,10 +27,15 @@ textarea{
   align-content: center;
   justify-items: center;
   grid-gap: 5px;
+  font-size: 15px;
   text-align: center;
   grid-template-columns: 1fr 1fr;
   z-index: 999;
   transition: all 0.2s ease-in-out;
+}
+
+.toolBarHidden{
+  transform: translateX(-190px);
 }
 
 .toolBtn{
@@ -34,14 +43,19 @@ textarea{
   border: none;
   color: white;
   border-radius: 5px;
-  height: 50px;
-  width: 50px;
-  margin: 10px 10px 2px 10px;
-  padding: 10px;
+  height: 40px;
+  width: 40px;
+  margin: 10px 20px 2px 20px;
+  padding: 0px;
   text-align: center;
-  font-size: 20px;
   font-weight: bold;
-  cursor: pointer;
+  transition: all 150ms ease-in-out;
+}
+
+
+
+.toolBtn:hover{
+  background-color: rgb(161, 115, 0);
 }
 
 .toolBtn.selected{
@@ -54,7 +68,7 @@ textarea{
 }
 
 #tempBox{
-  background-color: rgb(200, 200, 200);
+  background-color: rgba(0, 85, 255, 0.2);
   position: absolute;
   z-index: 9999;
 }
@@ -70,45 +84,154 @@ img{
   top: 0;
   background-color: white;
   height: 100vh;
-  width: 200px;
-  box-shadow: 7px 12px 24px rgba(0, 0, 0, 0.16);
+  width: 300px;
+  box-shadow: -7px -12px 24px rgba(0, 0, 0, 0.16);
   border-radius: 25px 0 0 25px;
-  display: grid;
-  align-content: center;
-  justify-items: center;
-  grid-gap: 5px;
-  text-align: center;
-  grid-template-columns: 1fr 1fr;
+  padding: 0 30px;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out; 
 }
 
-#hideToolBarBtn{
+#hideToolBarBtn, #hidePropertyBtn{
   display: flex;
   align-items: center;
   position: absolute;
-  top: calc(50% - 50px);
-  left: 190px;
-  background-color: rgb(121, 121, 121);
-  border: none;
+  background-color: rgb(149, 149, 149);
   color: white;
-  border-radius: 5px 0 0 5px;
   height: 100px;
   width: 20px;
   text-align: center;
   font-size: 20px;
   font-weight: bold;
-  cursor: pointer;
   z-index: 1000;
   transition: all 0.2s ease-in-out;
+  cursor: url(./assets/cursors/pointer.svg) 5 5, pointer;
+  border: none;
+}
+
+#hideToolBarBtn{
+  top: calc(50% - 50px);
+  left: 190px;
+  border-radius: 5px 0 0 5px;
+}
+
+#hideToolBarBtn:hover, #hidePropertyBtn:hover {
+  background-color: rgb(99, 99, 99);
+}
+
+#hideToolBarBtn i, #hidePropertyBtn i{
+  cursor: url(./assets/cursors/pointer.svg) 5 5, pointer;
+}
+
+.hovered{
+  outline: 2px solid rgb(83, 192, 255);
 }
 
 .selected-elem{
-  outline: 2px solid rgb(206, 144, 0);
-  cursor: move;
+  outline: 2px solid rgb(0, 54, 189) !important;
+  cursor: url(./assets/cursors/grab.svg) 17 10, grab !important;
   resize: both;
   overflow: hidden;
 }
 
-hr{
-  position: relative;
+.selected-elem:active{
+  cursor: url(./assets/cursors/grabbing.svg) 15 4, grabbing !important;
+}
+
+
+.line{
+  height: 10px;
+  resize: horizontal !important;
+  outline: none !important;
+}
+
+
+.hovered > div{
+  outline: 2px solid rgb(83, 192, 255);
+}
+.selected-elem > div{
+  outline: 2px solid rgb(0, 54, 189) !important;
+}
+
+button, button i{
+  cursor: url(./assets/cursors/pointer.svg) 5 0, pointer;
+}
+
+#editorWindow button{
+  cursor: url(./assets/cursors/default.svg) 0 0, default;
+}
+
+#hidePropertyBtn{ 
+  top: calc(50% - 50px);
+  right: 280px;
+  border-radius: 0 5px 5px 0;
+}
+
+#deleteBtn{
+  background-color: rgb(255, 0, 0);
+  color: white;
   border: none;
+  padding: 10px 20px;
+}
+
+.r{
+  border-radius: 3px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.467);
+}
+
+.r:hover{
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+  filter: brightness(0.9);
+  
+}
+
+#propertyWindowBody{
+  display: none;
+}
+
+.hwxy-cont{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  font-size: large;
+}
+.prop-a span{
+  font-weight: bold;
+  margin-right: 5px;
+  font-family: monospace;
+  font-size: 20px;
+}
+.prop-a input{
+  width: 60px;
+  border: none;
+  padding: 5px;
+  border-radius: 3px;
+  outline: none;
+  font-size: large;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.467);
+}
+
+
+.propertyBarHidden{
+  transform: translateX(280px);
+}
+
+input[type="color"]::-webkit-color-swatch{
+  border: 0;
+  border-radius: 3px;
+}
+input[type="color"]::-webkit-color-swatch-wrapper{
+  padding: 0;
+}
+
+input[type="color"]{
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+
+table, td, tr{
+  pointer-events: none;
 }
